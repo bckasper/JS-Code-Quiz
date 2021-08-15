@@ -1,3 +1,4 @@
+/* Universal styling */
 *{
     box-sizing: border-box;
     margin: 0;
@@ -9,6 +10,8 @@ body{
     font-size: 16px;
 }
 
+
+/* Header styling, which includes the High Score link and the Timer */
 header{
     display: flex;
     align-items: center;
@@ -18,30 +21,33 @@ header{
     margin-bottom: 2rem;
 }
 
-header a{
-    background-color: rgb(26, 74, 126);
-    padding: 1rem;
-    border-radius: 12px;
-    margin-left: 1rem;
-    text-decoration: none;
-    color: white;
-    box-shadow: -6px 5px 0px rgb(105, 115, 189);
-}
+    header a{
+        background-color: rgb(26, 74, 126);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-left: 1rem;
+        text-decoration: none;
+        color: white;
+        box-shadow: -6px 5px 0px rgb(105, 115, 189);
+    }
 
-header p{
-    margin-right: 2rem;
-    color: white;
-    padding: 1rem;
-    border-radius: 12px;
-    background-color: rgb(126, 46, 26);
-    box-shadow: 6px 5px 0px rgb(216, 143, 129);
-}
+    header p{
+        margin-right: 2rem;
+        color: white;
+        padding: 1rem;
+        border-radius: 12px;
+        background-color: rgb(126, 46, 26);
+        box-shadow: 6px 5px 0px rgb(216, 143, 129);
+    }
 
-header span{
-    font-weight: bolder;
-}
+    header span{
+        font-weight: bolder;
+    }
 
 
+
+
+/* Main quiz container */
 #container {
     background-color: rgb(181, 186, 233);
     height: 100%;
@@ -50,9 +56,53 @@ header span{
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin: 10px auto;
     box-shadow: 10px 10px  rgb(52, 61, 138);
     border-radius: 25px;
 }
+
+    /* title of the quiz and weclome text. This will disappear on start */
+    #container h1{
+        font-size: 200%;
+    }
+
+    #container p{
+        font-size: 130%;
+        padding: 0 1.5rem;
+    }
+
+
+
+    /* Unordered list that will act as the container for answers */
+    #container ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        min-height: 10rem;
+    }
+    #container li{
+        list-style: none;
+        background-color:rgb(15, 15, 53);
+        border-radius: 8px;
+        color: white;
+        padding: 0.5rem;
+    }
+
+    #container li:hover{
+        cursor: pointer;
+    }
+
+    /* Button to start */
+    #container button{
+        padding: 0.5rem;
+        border-radius: 8px;
+        color: white;
+        background-color: rgb(14, 63, 82);
+        font-size: 120%;
+    }
+
+    #container button:hover{
+        cursor: pointer;
+    }

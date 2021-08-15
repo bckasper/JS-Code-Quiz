@@ -80,11 +80,11 @@ header{
 
     /* Unordered list that will act as the container for answers */
     #container ul{
-        display: flex;
+        display: none;
         flex-direction: column;
         justify-content: space-evenly;
         min-height: 10rem;
-        display: none;
+        margin-top: -20rem;
     }
     #container li{
         list-style: none;
@@ -92,7 +92,6 @@ header{
         border-radius: 8px;
         color: white;
         padding: 0.5rem;
-        display: none;
     }
 
     #container li:hover{

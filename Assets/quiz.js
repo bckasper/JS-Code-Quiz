@@ -75,6 +75,14 @@ function startQuiz(){
 }
 
 function showquestion(){
+    answersUL.setAttribute("style", "display: flex")
+    let questionNumber = 0;
+    let questionChoices = questions[questionNumber].choices
+    question.innerHTML = questions[questionNumber].question
+    for(let i=0; i<questionChoices.length; i++){
+        answersUL.children[i].innerHTML = questionChoices[i]
+    }
+
     
 }
 

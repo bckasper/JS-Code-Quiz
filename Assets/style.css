@@ -8,6 +8,7 @@
 body{
     background-color: rgb(39, 43, 65);
     font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 
@@ -65,12 +66,14 @@ header{
 
     /* title of the quiz and weclome text. This will disappear on start */
     #container h1{
-        font-size: 200%;
+        font-size: 300%;
     }
 
     #container p{
         font-size: 130%;
-        padding: 0 1.5rem;
+        padding: 0 4rem;
+        text-align: center;
+        line-height: 180%;
     }
 
 
@@ -81,6 +84,7 @@ header{
         flex-direction: column;
         justify-content: space-evenly;
         min-height: 10rem;
+        display: none;
     }
     #container li{
         list-style: none;
@@ -88,6 +92,7 @@ header{
         border-radius: 8px;
         color: white;
         padding: 0.5rem;
+        display: none;
     }
 
     #container li:hover{

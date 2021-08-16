@@ -14,7 +14,8 @@ var scoreBoard = document.getElementById("scoreboard")
 
 // Global Variables
 scoreBoard.innerHTML = 0;
-timerElement.textContent = 100;
+secondsLeft = 100
+timerElement.textContent = secondsLeft;
 let questionNumber = 0;
 let score = 0
 
@@ -24,7 +25,7 @@ var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript or link to a JavaScript document?",
         choices: ["<java>","<javascript>","<script>","<code>"],
-        answer: "<script>",
+        answer: "<script>"
     },
     {
         question: "What does the modulus operator (%) return?",
@@ -32,44 +33,44 @@ var questions = [
         answer: "The remainder of one operand divided by another operand",
     },
     {
-        question: "This is question number 3",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "An array is bounded by which syntax?",
+        choices: ["{ }","( )","' '","[ ]"],
+        answer: "[ ]",
     },
     {
-        question: "This is question number 4",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "Which is the correct syntax for writing an IF statement?",
+        choices: ["if(x === 5){console.log(x)}","if x = 5, then console.log(x)","if[x == 5] then {console.log(x)}","if(x === 5; console.log(x))"],
+        answer: "if(x === 5){console.log(x)}",
     },
     {
-        question: "This is question number 5",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "How does a FOR LOOP start?",
+        choices: ["for(let i=0; i++; i < array.length)","for(i++; let i=0; i < array.length)","for(let i=0; i < array.length; i++)","for(i++; i < array.length; i=0)"],
+        answer: "for(let i=0; i < array.length; i++)",
     },
     {
-        question: "This is question number 6",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "How do you start a comment line in JavaScript?",
+        choices: ["**","<!--","--","//"],
+        answer: "//",
     },
     {
-        question: "This is question number 7",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "What will Math.random() return?",
+        choices: ["Any random whole number","A number between 0 and 1","Any random integer rounded to the nearest hundreth","Any randome number, including negative numbers"],
+        answer: "A number between 0 and 1",
     },
     {
-        question: "This is question number 8",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "How do you write an IF statement for executing code if x is NOT EQUAL to y?",
+        choices: ["if(x <> y)","if(x != y)","if(x not y)","if(x $= y)"],
+        answer: "if(x != y)",
     },
     {
-        question: "This is question number 9",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "How do you declare a JavaScript variable?",
+        choices: ["variable","v","vari","var"],
+        answer: "var",
     },
     {
-        question: "This is question number 10",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "What is the case structure of the variable newItem called?",
+        choices: ["kebab case","pascal case","camel case","snake case"],
+        answer: "camel case",
     },
 ]
 
@@ -83,6 +84,7 @@ function startQuiz(){
     startButton.remove()
 
     showquestion()
+    startTimer()
 }
 
 function showquestion(){
@@ -91,16 +93,8 @@ function showquestion(){
     let questionChoices = questions[questionNumber].choices
     for(let i=0; i<questionChoices.length; i++){
         answersUL.children[i].textContent = questionChoices[i]
-        answersUL.children[i].addEventListener("click", function(event){
-            var answer = questions[questionNumber].answer
-            var userChoice = event.target.textContent
-            if(userChoice === answer){
-                correctAnswer()
-            } else {
-                wrongAnswer()
-            }
-        })
     }
+
 }
 
 function correctAnswer() {
@@ -115,22 +109,26 @@ function wrongAnswer() {
     questionNumber++
     score = score-10
     scoreBoard.innerHTML = score
+    secondsLeft = secondsLeft-10
     showquestion()
     console.log(questionNumber)
 }
 
+function startTimer(){
+    let timer = setInterval(() => {
+        secondsLeft--
+        timerElement.textContent = secondsLeft
 
+        if(secondsLeft < 15){
+            timerElement.setAttribute("style","color: red")
+        }
 
+        if(secondsLeft === 0){
+            clearInterval(timer)
+        }
+    }, 1000);
+}
 
-// function validateAnswer(event){
-//     var answer = questions[questionNumber].answer
-    
-//     var userChoice = event.target.textContent
-    
-//     if(userChoice === answer){
-//         console.log("correct")
-//     }
-// }
 
 
 
@@ -139,7 +137,44 @@ function wrongAnswer() {
 
 // My event listeners
 startButton.addEventListener("click", startQuiz)
-// answer1.addEventListener("click", validateAnswer)
-// answer2.addEventListener("click", validateAnswer)
-// answer3.addEventListener("click", validateAnswer)
-// answer4.addEventListener("click", validateAnswer)
+
+// Event listener for each list item
+answersUL.children[0].addEventListener("click", function(event){
+    var answer = questions[questionNumber].answer
+    var userChoice = event.target.textContent
+    if(userChoice === answer){
+        correctAnswer()
+    } else {
+        wrongAnswer()
+    }
+})
+
+answersUL.children[1].addEventListener("click", function(event){
+    var answer = questions[questionNumber].answer
+    var userChoice = event.target.textContent
+    if(userChoice === answer){
+        correctAnswer()
+    } else {
+        wrongAnswer()
+    }
+})
+
+answersUL.children[2].addEventListener("click", function(event){
+    var answer = questions[questionNumber].answer
+    var userChoice = event.target.textContent
+    if(userChoice === answer){
+        correctAnswer()
+    } else {
+        wrongAnswer()
+    }
+})
+
+answersUL.children[3].addEventListener("click", function(event){
+    var answer = questions[questionNumber].answer
+    var userChoice = event.target.textContent
+    if(userChoice === answer){
+        correctAnswer()
+    } else {
+        wrongAnswer()
+    }
+})

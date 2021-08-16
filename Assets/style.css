@@ -12,7 +12,7 @@ body{
 }
 
 
-/* Header styling, which includes the High Score link and the Timer */
+/* Header styling, which includes the High Score link, the scoreboard and the Timer */
 header{
     display: flex;
     align-items: center;
@@ -83,15 +83,19 @@ header{
         display: none;
         flex-direction: column;
         justify-content: space-evenly;
-        min-height: 10rem;
+        min-height: 20rem;
+        height:100%;
         margin-top: -20rem;
     }
+
     #container li{
         list-style: none;
         background-color:rgb(15, 15, 53);
         border-radius: 8px;
         color: white;
-        padding: 0.5rem;
+        padding: 0.8rem;
+        text-align: center;
+        min-width: 10rem;
     }
 
     #container li:hover{

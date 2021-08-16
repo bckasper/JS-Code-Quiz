@@ -5,20 +5,31 @@ var welcomeText = document.getElementById("welcome-text")
 var startButton = document.getElementById("startBtn")
 var question = document.getElementById("question")
 var answersUL = document.getElementById("answers")
+var answer1 = document.getElementById("answer-1")
+var answer2 = document.getElementById("answer-2")
+var answer3 = document.getElementById("answer-3")
+var answer4 = document.getElementById("answer-4")
+var scoreBoard = document.getElementById("scoreboard")
 
+
+// Global Variables
+scoreBoard.innerHTML = 0;
+timerElement.textContent = 100;
+let questionNumber = 0;
+let score = 0
 
 
 // Questions
 var questions = [
     {
-        question: "This is question number 1?",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "Inside which HTML element do we put the JavaScript or link to a JavaScript document?",
+        choices: ["<java>","<javascript>","<script>","<code>"],
+        answer: "<script>",
     },
     {
-        question: "This is question number 2",
-        choices: [1,2,3,4],
-        answer: 1,
+        question: "What does the modulus operator (%) return?",
+        choices: ["The remainder of one operand divided by another operand","A percentage-formatted value","The square root of an operand","Nothing. Modulus does not exist"],
+        answer: "The remainder of one operand divided by another operand",
     },
     {
         question: "This is question number 3",
@@ -76,17 +87,59 @@ function startQuiz(){
 
 function showquestion(){
     answersUL.setAttribute("style", "display: flex")
-    let questionNumber = 0;
-    let questionChoices = questions[questionNumber].choices
     question.innerHTML = questions[questionNumber].question
+    let questionChoices = questions[questionNumber].choices
     for(let i=0; i<questionChoices.length; i++){
-        answersUL.children[i].innerHTML = questionChoices[i]
+        answersUL.children[i].textContent = questionChoices[i]
+        answersUL.children[i].addEventListener("click", function(event){
+            var answer = questions[questionNumber].answer
+            var userChoice = event.target.textContent
+            if(userChoice === answer){
+                correctAnswer()
+            } else {
+                wrongAnswer()
+            }
+        })
     }
+}
 
+function correctAnswer() {
+    questionNumber++
+    score = score+50
+    scoreBoard.innerHTML = score
+    showquestion()
     
 }
+
+function wrongAnswer() {
+    questionNumber++
+    score = score-10
+    scoreBoard.innerHTML = score
+    showquestion()
+    console.log(questionNumber)
+}
+
+
+
+
+// function validateAnswer(event){
+//     var answer = questions[questionNumber].answer
+    
+//     var userChoice = event.target.textContent
+    
+//     if(userChoice === answer){
+//         console.log("correct")
+//     }
+// }
+
+
+
+
 
 
 // My event listeners
 startButton.addEventListener("click", startQuiz)
-
+// answer1.addEventListener("click", validateAnswer)
+// answer2.addEventListener("click", validateAnswer)
+// answer3.addEventListener("click", validateAnswer)
+// answer4.addEventListener("click", validateAnswer)

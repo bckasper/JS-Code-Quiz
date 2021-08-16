@@ -12,19 +12,20 @@
     <!-- Link to High Scores Page -->
     <header>
         <a href="/Assets/highscores.html" target="0">View High Scores 🏆</a>
-        <p>Time Remaining: <span id="timer">100</span> Seconds</p>
+        <p>Score: <span id="scoreboard"></span> Points</p>
+        <p>Time Remaining: <span id="timer"></span> Seconds</p>
     </header>
     <!-- Main Code Quiz Container -->
     <section id="container">
         <h1 id="header">JavaScript Coding Quiz</h1>
-        <p id="welcome-text">Welcome to the Javascript Code Quiz. You will be given 100 seconds to complete this quiz. Do your best to answer each question in the allotted time. Wrong answers will deduct seconds off of your time and points off of your score!</p>
+        <p id="welcome-text">Welcome to the Javascript Code Quiz. This challeng will test your fundamental knowledge of the JavaScript programming language. Do your best to answer each question in the allotted time. Wrong answers will deduct seconds off of your time and points off of your score!</p>
         <button id="startBtn">Start Quiz</button>
         <h3 id="question"></h3>
         <ul id="answers">
-            <li id="answer-1"></li>
-            <li id="answer-2"></li>
-            <li id="answer-3"></li>
-            <li id="answer-4"></li>
+            <li id="answer-1" data-id="0"></li>
+            <li id="answer-2" data-id="1"></li>
+            <li id="answer-3" data-id="2"></li>
+            <li id="answer-4" data-id="3"></li>
         </ul>
         
     </section>

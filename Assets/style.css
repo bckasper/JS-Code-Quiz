@@ -22,7 +22,7 @@ header{
     margin-bottom: 2rem;
 }
 
-    header a{
+    header #highscore{
         background-color: rgb(26, 74, 126);
         padding: 1rem;
         border-radius: 12px;
@@ -30,6 +30,10 @@ header{
         text-decoration: none;
         color: white;
         box-shadow: -6px 5px 0px rgb(105, 115, 189);
+    }
+
+    header #highscore:hover{
+        cursor: pointer;
     }
 
     header p{

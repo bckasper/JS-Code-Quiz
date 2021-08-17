@@ -1,5 +1,6 @@
 // Element variables
 var header = document.getElementById("header")
+var highScoreButton = document.getElementById("highscore")
 var timerElement = document.getElementById("timer")
 var welcomeText = document.getElementById("welcome-text")
 var startButton = document.getElementById("startBtn")
@@ -204,17 +205,18 @@ function quizOver () {
     let submitHighscore = document.createElement("button");
     miniContainer.appendChild(submitHighscore)
     submitHighscore.textContent = "Submit Score"
+    submitHighscore.addEventListener("click", goToHighScore)
 }
 
 
 function goToHighScore(){
-    
+    console.log("Go to HighScore")
 }
 
 
 
 
-// My event listeners
+// My global event listeners
 startButton.addEventListener("click", startQuiz)
 
 for(let i = 0; i<answersUL.children.length; i++){
@@ -237,7 +239,8 @@ for(let i = 0; i<answersUL.children.length; i++){
     })
 }
 
-submitHighscore.addEventListener("click", goToHighScore)
+
+highScoreButton.addEventListener("click", goToHighScore)
 
 // Score Messages that will be displayed under the user's score at the end
 var horrible = "You might need to read up a bit on JavaScript basics before you are ready for this quiz."

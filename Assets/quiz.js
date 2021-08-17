@@ -98,20 +98,31 @@ function showquestion(){
 }
 
 function correctAnswer() {
+    if(questionNumber === questions.length-1){
+        score = score+50
+        scoreBoard.innerHTML = score
+        return quizOver()
+    } else {
     questionNumber++
     score = score+50
     scoreBoard.innerHTML = score
-    showquestion()
+    showquestion()}
     
+
 }
 
 function wrongAnswer() {
+    if(questionNumber === questions.length-1){
+        score = score-10
+        scoreBoard.innerHTML = score
+        return quizOver()
+    } else {
     questionNumber++
     score = score-10
     scoreBoard.innerHTML = score
     secondsLeft = secondsLeft-10
-    showquestion()
-    console.log(questionNumber)
+    showquestion()}
+    
 }
 
 function startTimer(){
@@ -125,12 +136,21 @@ function startTimer(){
 
         if(secondsLeft === 0){
             clearInterval(timer)
+            quizOver()
         }
     }, 1000);
 }
 
 
+function quizOver () {
+    question.remove();
+    answersUL.remove();
+    for(let i=0; i<answersUL.children.length; i++){
+        answersUL.children[i].remove();
+    }
 
+    alert("Nice! You got a " + score)
+}
 
 
 
@@ -138,43 +158,14 @@ function startTimer(){
 // My event listeners
 startButton.addEventListener("click", startQuiz)
 
-// Event listener for each list item
-answersUL.children[0].addEventListener("click", function(event){
-    var answer = questions[questionNumber].answer
-    var userChoice = event.target.textContent
-    if(userChoice === answer){
-        correctAnswer()
-    } else {
-        wrongAnswer()
-    }
-})
-
-answersUL.children[1].addEventListener("click", function(event){
-    var answer = questions[questionNumber].answer
-    var userChoice = event.target.textContent
-    if(userChoice === answer){
-        correctAnswer()
-    } else {
-        wrongAnswer()
-    }
-})
-
-answersUL.children[2].addEventListener("click", function(event){
-    var answer = questions[questionNumber].answer
-    var userChoice = event.target.textContent
-    if(userChoice === answer){
-        correctAnswer()
-    } else {
-        wrongAnswer()
-    }
-})
-
-answersUL.children[3].addEventListener("click", function(event){
-    var answer = questions[questionNumber].answer
-    var userChoice = event.target.textContent
-    if(userChoice === answer){
-        correctAnswer()
-    } else {
-        wrongAnswer()
-    }
-})
+for(let i = 0; i<answersUL.children.length; i++){
+    answersUL.children[i].addEventListener("click", function(event){
+        var answer = questions[questionNumber].answer
+        var userChoice = event.target.textContent
+        if(userChoice === answer){
+            correctAnswer()
+        } else {
+            wrongAnswer()
+        }  
+    })
+}

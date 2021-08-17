@@ -3,6 +3,7 @@ var header = document.getElementById("header")
 var timerElement = document.getElementById("timer")
 var welcomeText = document.getElementById("welcome-text")
 var startButton = document.getElementById("startBtn")
+var mainContainer = document.getElementById("container")
 var question = document.getElementById("question")
 var answersUL = document.getElementById("answers")
 var answer1 = document.getElementById("answer-1")
@@ -17,8 +18,9 @@ scoreBoard.innerHTML = 0;
 secondsLeft = 100
 timerElement.textContent = secondsLeft;
 let questionNumber = 0;
-let score = 0
-var over = false
+let score = 0;
+var over = false; 
+let finalScore = 0;
 
 
 // Questions
@@ -107,7 +109,6 @@ function correctAnswer() {
     } else {
     questionNumber++
     showquestion()}
-    console.log(questionNumber)
 
 }
 
@@ -129,7 +130,11 @@ function wrongAnswer() {
 }
 
 function scoreDecrease(){
-    score = score-10
+    if(score <= 0){
+        score -0
+    } else {
+        score = score-10
+    }
     scoreBoard.innerHTML = score
 }
 
@@ -162,34 +167,49 @@ function quizOver () {
     
     score = score + secondsLeft
     scoreBoard.innerHTML = score
-    
+    finalScore = score;
+
     let quizOverMsg = document.createElement("h1");
-    document.getElementById("container").appendChild(quizOverMsg);
-    quizOverMsg.setAttribute("style","margin: auto 5rem auto")
+    mainContainer.appendChild(quizOverMsg);
+    quizOverMsg.setAttribute("style","margin: auto 5rem auto 5rem; text-align: center;")
+    quizOverMsg.textContent = "Score: "+score
 
-    // Messages depending on how the user did on the quiz
-    var horrible = "Yikes. Well uhh...you got a score of "+score+". You know this was a contest to try to get the HIGHEST score, right? This is not golf."
-    var bad = "Ok...a score of "+score+". Definintely not your best...please go study and come back later."
-    var okay = "Nice! A score of "+score+". You are really getting the hang of it...study a bit more and try again!"
-    var good = "Great job! You got an excellent score of "+score+". You are on the brink of greatness!"
-    var great = "Wow! Are you with MENSA? You got a score of "+score+". You are truly a programming master! Nice work!"
-
-    if(score < 0){
-        quizOverMsg.textContent = horrible
-    } else if(score >=0 && score < 150) {
-        quizOverMsg.textContent = bad
-    } else if(score >= 150 && score < 250){
-        quizOverMsg.textContent = okay
-    } else if (score >= 250 && score < 400){
-        quizOverMsg.textContent = good
+    let scoreMessage = document.createElement("p");
+    mainContainer.appendChild(scoreMessage);
+    scoreMessage.setAttribute("style","margin: auto 5rem auto 5rem; text-align: center; font-size: 200%;")
+    if(finalScore < 100){
+        scoreMessage.textContent = horrible;
+    } else if(finalScore >= 100 && finalScore < 250){
+        scoreMessage.textContent = bad;
+    } else if (finalScore >= 250 && finalScore < 400){
+        scoreMessage.textContent = okay
+    } else if(finalScore >= 400 < finalScore < 500){
+        scoreMessage.textContent = great
     } else {
-        quizOverMsg.textContent = great
+        scoreMessage.textContent = fantastic
     }
 
+    let miniContainer = document.createElement("section")
+    mainContainer.appendChild(miniContainer);
+    miniContainer.setAttribute("style","margin-bottom: 5rem; display: flex; flex-direction: row; justify-content: space-around; align-items: center; height: fit-content;")
+
+    let inputLabel = document.createElement("label")
+    miniContainer.appendChild(inputLabel)
+    inputLabel.textContent = "Enter your initials:"
+
+    let inputInitials = document.createElement("input")
+    miniContainer.appendChild(inputInitials);
+    inputInitials.setAttribute("style","margin: 0 2rem 0 1rem;")
+
+    let submitHighscore = document.createElement("button");
+    miniContainer.appendChild(submitHighscore)
+    submitHighscore.textContent = "Submit Score"
 }
 
 
-
+function goToHighScore(){
+    
+}
 
 
 
@@ -216,3 +236,12 @@ for(let i = 0; i<answersUL.children.length; i++){
         }  
     })
 }
+
+submitHighscore.addEventListener("click", goToHighScore)
+
+// Score Messages that will be displayed under the user's score at the end
+var horrible = "You might need to read up a bit on JavaScript basics before you are ready for this quiz."
+var bad = "Ok. Definintely not your best, but I know you can do better. Study up and try again!"
+var okay = "Not bad! Keep studying and you will continue to improve!"
+var great = "Great score! You truly know your stuff when it comes to JavaScript!"
+var fantastic = "Fantastic score! You are truly a master!"

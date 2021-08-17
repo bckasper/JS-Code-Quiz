@@ -62,16 +62,17 @@ header{
 #container {
     background-color: rgb(181, 186, 233);
     height: 100%;
-    min-height: 50vw;
+    min-height: 30rem;
     width: 80%;
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     margin: 10px auto;
     box-shadow: 10px 10px  rgb(52, 61, 138);
     border-radius: 25px;
+    border: 3px solid black;
 }
 
     /* title of the quiz and weclome text. This will disappear on start */
@@ -85,7 +86,7 @@ header{
         padding: 0 4rem;
         text-align: center;
         line-height: 180%;
-        margin: auto auto 5rem auto
+        margin: auto auto 5rem auto;
     }
 
     #container h3{
@@ -94,6 +95,16 @@ header{
         margin-left: 2rem;
         font-size: 150%;
         text-align: center;
+    }
+
+    input{
+        margin-bottom: 5rem;
+        font-size: 150%;
+        height:fit-content
+    }
+
+    label{
+        font-size: 150%;
     }
 
 

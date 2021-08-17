@@ -22,6 +22,7 @@ let questionNumber = 0;
 let score = 0;
 var over = false; 
 let finalScore = 0;
+var quizOverMsg; //declaring this variable which is accessed in the quizOver function and the goToHighScore function
 
 
 // Questions
@@ -190,6 +191,7 @@ function quizOver () {
         scoreMessage.textContent = fantastic
     }
 
+    // This is the container that is appended and holds the input label, input element, and submit score button. The submit score button will fire the goToHighScore function
     let miniContainer = document.createElement("section")
     mainContainer.appendChild(miniContainer);
     miniContainer.setAttribute("style","margin-bottom: 5rem; display: flex; flex-direction: row; justify-content: space-around; align-items: center; height: fit-content;")
@@ -205,12 +207,22 @@ function quizOver () {
     let submitHighscore = document.createElement("button");
     miniContainer.appendChild(submitHighscore)
     submitHighscore.textContent = "Submit Score"
-    submitHighscore.addEventListener("click", goToHighScore)
+    submitHighscore.addEventListener("click", function(){
+        quizOverMsg.remove();
+        scoreMessage.remove();
+        miniContainer.remove();
+        localStorage.setItem("High Scores",finalScore)
+        goToHighScore()
+    })
 }
 
 
 function goToHighScore(){
-    console.log("Go to HighScore")
+    let highScoreHeader = document.createElement("h1");
+    mainContainer.appendChild(highScoreHeader);
+    highScoreHeader = "High Scores";
+
+    console.log(localStorage.getItem(finalScore))
 }
 
 

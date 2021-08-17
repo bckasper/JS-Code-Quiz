@@ -102,13 +102,16 @@ header{
     }
 
     input{
-        margin-bottom: 5rem;
         font-size: 150%;
-        height:fit-content
+        border: 2px solid black;
+        width: 5rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
     }
 
     label{
         font-size: 150%;
+        font-weight: bold;
     }
 
 

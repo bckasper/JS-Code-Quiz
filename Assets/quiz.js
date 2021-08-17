@@ -18,6 +18,7 @@ secondsLeft = 100
 timerElement.textContent = secondsLeft;
 let questionNumber = 0;
 let score = 0
+var over = false
 
 
 // Questions
@@ -107,7 +108,7 @@ function correctAnswer() {
     score = score+50
     scoreBoard.innerHTML = score
     showquestion()}
-    
+    console.log(questionNumber)
 
 }
 
@@ -122,6 +123,7 @@ function wrongAnswer() {
     scoreBoard.innerHTML = score
     secondsLeft = secondsLeft-10
     showquestion()}
+    console.log(questionNumber)
     
 }
 
@@ -134,23 +136,53 @@ function startTimer(){
             timerElement.setAttribute("style","color: red")
         }
 
-        if(secondsLeft === 0){
+        if(secondsLeft <= 0 && questionNumber <= questions.length-1){
             clearInterval(timer)
             quizOver()
+        } else if(secondsLeft > 0 && over == true){
+            clearInterval(timer)
         }
     }, 1000);
 }
 
 
 function quizOver () {
+    over = true
     question.remove();
     answersUL.remove();
     for(let i=0; i<answersUL.children.length; i++){
         answersUL.children[i].remove();
     }
+    
+    score = score + secondsLeft
+    scoreBoard.innerHTML = score
+    
+    let quizOverMsg = document.createElement("h1");
+    document.getElementById("container").appendChild(quizOverMsg);
+    quizOverMsg.setAttribute("style","margin: auto 5rem auto")
 
-    alert("Nice! You got a " + score)
+    // Messages depending on how the user did on the quiz
+    var horrible = "Yikes. Well uhh...you got a score of "+score+". You know this was a contest to try to get the HIGHEST score, right? This is not golf."
+    var bad = "Ok...a score of "+score+". Definintely not your best...please go study and come back later."
+    var okay = "Nice! A score of "+score+". You are really getting the hang of it...study a bit more and try again!"
+    var good = "Great job! You got an excellent score of "+score+". You are on the brink of greatness!"
+    var great = "Wow! Are you with MENSA? You got a score of "+score+". You are truly a programming master! Nice work!"
+
+    if(score < 0){
+        quizOverMsg.textContent = horrible
+    } else if(score >=0 && score < 150) {
+        quizOverMsg.textContent = bad
+    } else if(score >= 150 && score < 250){
+        quizOverMsg.textContent = okay
+    } else if (score >= 250 && score < 400){
+        quizOverMsg.textContent = good
+    } else {
+        quizOverMsg.textContent = great
+    }
+
 }
+
+
 
 
 

@@ -99,32 +99,38 @@ function showquestion(){
 }
 
 function correctAnswer() {
+    for (let i=0; i<answersUL.children.length; i++){
+        answersUL.children[i].setAttribute("style", "background-color: rgb(15,15,53);")
+    }
     if(questionNumber === questions.length-1){
-        score = score+50
-        scoreBoard.innerHTML = score
         return quizOver()
     } else {
     questionNumber++
-    score = score+50
-    scoreBoard.innerHTML = score
     showquestion()}
     console.log(questionNumber)
 
 }
 
+function scoreIncrease(){
+    score = score+50
+    scoreBoard.innerHTML = score
+}
+
 function wrongAnswer() {
+    for (let i=0; i<answersUL.children.length; i++){
+        answersUL.children[i].setAttribute("style", "background-color: rgb(15,15,53);")
+    }
     if(questionNumber === questions.length-1){
-        score = score-10
-        scoreBoard.innerHTML = score
         return quizOver()
     } else {
     questionNumber++
+    secondsLeft = secondsLeft-10
+    showquestion()}    
+}
+
+function scoreDecrease(){
     score = score-10
     scoreBoard.innerHTML = score
-    secondsLeft = secondsLeft-10
-    showquestion()}
-    console.log(questionNumber)
-    
 }
 
 function startTimer(){
@@ -145,7 +151,7 @@ function startTimer(){
     }, 1000);
 }
 
-
+// This function will run when the quiz concludes either by time running out or questions finished.
 function quizOver () {
     over = true
     question.remove();
@@ -187,6 +193,7 @@ function quizOver () {
 
 
 
+
 // My event listeners
 startButton.addEventListener("click", startQuiz)
 
@@ -195,9 +202,17 @@ for(let i = 0; i<answersUL.children.length; i++){
         var answer = questions[questionNumber].answer
         var userChoice = event.target.textContent
         if(userChoice === answer){
-            correctAnswer()
+            scoreIncrease()
+            event.target.setAttribute("style","background-color: green")
+            setTimeout(() => {
+                correctAnswer()
+            }, 1000); 
         } else {
+           scoreDecrease()
+           event.target.setAttribute("style","background-color: red")
+           setTimeout(() => {
             wrongAnswer()
+           }, 1000); 
         }  
     })
 }

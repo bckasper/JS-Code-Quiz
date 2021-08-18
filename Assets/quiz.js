@@ -24,6 +24,7 @@ var over = false;
 let finalScore = 0;
 var quizOverMsg; //declaring this variable which is accessed in the quizOver function and the goToHighScore function
 
+
 // Questions
 var questions = [
     {
@@ -98,7 +99,6 @@ function showquestion(){
     for(let i=0; i<questionChoices.length; i++){
         answersUL.children[i].textContent = questionChoices[i]
     }
-
 }
 
 function correctAnswer() {
@@ -110,7 +110,6 @@ function correctAnswer() {
     } else {
     questionNumber++
     showquestion()}
-
 }
 
 function scoreIncrease(){
@@ -213,55 +212,23 @@ function quizOver () {
     submitHighscore.addEventListener("click", function(event){
         event.preventDefault();
 
-        quizOverMsg.remove();
-        scoreMessage.remove();
-        miniContainer.remove();
-
-
-        let userRecord = {
+        let newRecord = {
             userName: inputInitials.value,
             userScore: finalScore,
         }
-        localStorage.setItem("Score", JSON.stringify(userRecord))
 
-        goToHighScore()
+        var existingRecords = JSON.parse(localStorage.getItem("allScores"));
+        if (existingRecords == null) existingRecords = []
+        
+        existingRecords.push(newRecord);
+        localStorage.setItem("allScores", JSON.stringify(existingRecords))
+        
+        
+
+        window.location.href='/Users/benkasper/Desktop/Coding/OSU Bootcamp/JS-Code-Quiz/JS-Code-Quiz/Assets/highscores.html'
 
     })
 }
-
-
-
-function goToHighScore(){
-    
-    mainContainer.setAttribute("style","justify-content: space-between")
-    
-    var latestScore = JSON.parse(localStorage.getItem("Score"))
-
-
-    let highScoreHeader = document.createElement("h1");
-    highScoreHeader.textContent = "High Scores";
-    mainContainer.appendChild(highScoreHeader);
-    highScoreHeader.setAttribute("style","margin:0;")
-    
-    let highScoreUL = document.createElement("ol");
-    mainContainer.appendChild(highScoreUL);
-    
-
-    let highScoreItem = document.createElement("li");
-    highScoreItem.textContent = latestScore.userName+": "+latestScore.userScore
-    highScoreUL.appendChild(highScoreItem)
-
-    let clearHighScore = document.createElement("button");
-    clearHighScore.textContent = "Clear High Scores"
-    mainContainer.appendChild(clearHighScore)
-    clearHighScore.setAttribute("style","margin-bottom:2rem;")
-
-    clearHighScore.addEventListener("click",function(){
-        console.log("hs cleared")
-    })
-}
-
-
 
 
 // My global event listeners
@@ -297,7 +264,6 @@ highScoreButton.addEventListener("click", function(){
 
 
 
-// console.log(mainContainer.children)
 // Score Messages that will be displayed under the user's score at the end
 var horrible = "You might need to read up a bit on JavaScript basics before you are ready for this quiz."
 var bad = "Ok. Definintely not your best, but I know you can do better. Study up and try again!"

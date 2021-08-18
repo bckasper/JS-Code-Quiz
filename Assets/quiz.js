@@ -24,7 +24,6 @@ var over = false;
 let finalScore = 0;
 var quizOverMsg; //declaring this variable which is accessed in the quizOver function and the goToHighScore function
 
-
 // Questions
 var questions = [
     {
@@ -201,28 +200,65 @@ function quizOver () {
     inputLabel.textContent = "Enter your initials:"
 
     let inputInitials = document.createElement("input")
+    inputInitials.setAttribute("type","text")
     miniContainer.appendChild(inputInitials);
-    inputInitials.setAttribute("style","margin: 0 2rem 0 1rem;")
+    inputInitials.setAttribute("style","margin: 0 2rem 0 1rem;");
 
+    
     let submitHighscore = document.createElement("button");
     miniContainer.appendChild(submitHighscore)
     submitHighscore.textContent = "Submit Score"
-    submitHighscore.addEventListener("click", function(){
+    
+    
+    submitHighscore.addEventListener("click", function(event){
+        event.preventDefault();
+
         quizOverMsg.remove();
         scoreMessage.remove();
         miniContainer.remove();
-        localStorage.setItem("High Scores",finalScore)
+
+
+        let userRecord = {
+            userName: inputInitials.value,
+            userScore: finalScore,
+        }
+        localStorage.setItem("Score", JSON.stringify(userRecord))
+
         goToHighScore()
+
     })
 }
 
 
-function goToHighScore(){
-    let highScoreHeader = document.createElement("h1");
-    mainContainer.appendChild(highScoreHeader);
-    highScoreHeader = "High Scores";
 
-    console.log(localStorage.getItem(finalScore))
+function goToHighScore(){
+    
+    mainContainer.setAttribute("style","justify-content: space-between")
+    
+    var latestScore = JSON.parse(localStorage.getItem("Score"))
+
+
+    let highScoreHeader = document.createElement("h1");
+    highScoreHeader.textContent = "High Scores";
+    mainContainer.appendChild(highScoreHeader);
+    highScoreHeader.setAttribute("style","margin:0;")
+    
+    let highScoreUL = document.createElement("ol");
+    mainContainer.appendChild(highScoreUL);
+    
+
+    let highScoreItem = document.createElement("li");
+    highScoreItem.textContent = latestScore.userName+": "+latestScore.userScore
+    highScoreUL.appendChild(highScoreItem)
+
+    let clearHighScore = document.createElement("button");
+    clearHighScore.textContent = "Clear High Scores"
+    mainContainer.appendChild(clearHighScore)
+    clearHighScore.setAttribute("style","margin-bottom:2rem;")
+
+    clearHighScore.addEventListener("click",function(){
+        console.log("hs cleared")
+    })
 }
 
 
@@ -252,8 +288,16 @@ for(let i = 0; i<answersUL.children.length; i++){
 }
 
 
-highScoreButton.addEventListener("click", goToHighScore)
+highScoreButton.addEventListener("click", function(){
+    for(let i=0; i<mainContainer.children.length; i++){
+        mainContainer.children[i].remove()
+    }
+    goToHighScore()
+})
 
+
+
+// console.log(mainContainer.children)
 // Score Messages that will be displayed under the user's score at the end
 var horrible = "You might need to read up a bit on JavaScript basics before you are ready for this quiz."
 var bad = "Ok. Definintely not your best, but I know you can do better. Study up and try again!"

@@ -117,7 +117,7 @@ header{
 
 
     /* Unordered list that will act as the container for answers */
-    #container ul{
+    ul{
         display: none;
         flex-direction: column;
         justify-content: space-evenly;
@@ -126,7 +126,7 @@ header{
         margin-top: -20rem;
     }
 
-    #container li{
+    li{
         list-style: none;
         background-color:rgb(15, 15, 53);
         border-radius: 8px;
@@ -136,7 +136,7 @@ header{
         min-width: 10rem;
     }
 
-    #container li:hover{
+    li:hover{
         cursor: pointer;
     }
 

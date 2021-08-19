@@ -11,27 +11,29 @@ clearHighScoresBtn.setAttribute("style","margin-bottom: 2rem")
 
 // Appends a UL to the highscores page and appends a LI for each score in the local storage
 function appendHighScores(){
-
     var allScores = JSON.parse(localStorage.getItem("allScores"))
     
-
-    for(let i=0; i<allScores.length; i++){
-        var scoreLi = document.createElement("li");
-        scoreLi.textContent = allScores[i].userName+": "+allScores[i].userScore;
-        scoreOL.appendChild(scoreLi);
+    if (allScores == null){
+        return
+    } else {
+        for(let i=0; i < allScores.length; i++){
+            var scoreLi = document.createElement("li");
+            scoreLi.textContent = allScores[i].userName+": "+allScores[i].userScore;
+            scoreOL.appendChild(scoreLi);
+        }
     }
-
 }
 
 appendHighScores()
 
-
 // clear local storage
 function clearLocalStorage(){
-    localStorage.clear();
     for(i=0; i<scoreOL.children.length; i++){
-        scoreOL.children[i].remove()
+        scoreOL.children[i].remove();
     }
+    
+    localStorage.clear();
+    location.reload();
 }
 
 

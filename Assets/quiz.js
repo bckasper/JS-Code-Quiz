@@ -218,13 +218,11 @@ function quizOver () {
         }
 
         var existingRecords = JSON.parse(localStorage.getItem("allScores"));
-        if (existingRecords == null) existingRecords = []
+        if (existingRecords == null) {existingRecords = []}
         
         existingRecords.push(newRecord);
         localStorage.setItem("allScores", JSON.stringify(existingRecords))
         
-        
-
         window.location.href='/Users/benkasper/Desktop/Coding/OSU Bootcamp/JS-Code-Quiz/JS-Code-Quiz/Assets/highscores.html'
 
     })

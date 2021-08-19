@@ -229,7 +229,7 @@ function quizOver () {
         existingRecords.push(newRecord);
         localStorage.setItem("allScores", JSON.stringify(existingRecords))
         
-        window.location.href='/Users/benkasper/Desktop/Coding/OSU Bootcamp/JS-Code-Quiz/JS-Code-Quiz/highscores.html'
+        window.location.href='highscores.html'
 
     })
 }

@@ -15,17 +15,17 @@ var scoreBoard = document.getElementById("scoreboard")
 
 
 // Global Variables
-scoreBoard.innerHTML = 0;
-secondsLeft = 100
-timerElement.textContent = secondsLeft;
-let questionNumber = 0;
-let score = 0;
-var over = false; 
-let finalScore = 0;
+scoreBoard.innerHTML = 0; //starts the HTML text content at 0 for the scoreboard that updates as the user goes through the quiz
+secondsLeft = 100 //starting time for the timer
+timerElement.textContent = secondsLeft; //makes sure the timer is using the secondsLeft as text content
+let questionNumber = 0; //starts the question indexing
+let score = 0; //starts the score counter
+var over = false; //This is here to make the timer stop correctly when the quizOver function is fired
+let finalScore = 0; //makes sure the secondsLeft get added to the final score and stored locally
 var quizOverMsg; //declaring this variable which is accessed in the quizOver function and the goToHighScore function
 
 
-// Questions
+// Questions for the quiz
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript or link to a JavaScript document?",
@@ -92,6 +92,7 @@ function startQuiz(){
     startTimer()
 }
 
+// This will show the question and all the possible choices for the user
 function showquestion(){
     answersUL.setAttribute("style", "display: flex")
     question.innerHTML = questions[questionNumber].question
@@ -101,6 +102,7 @@ function showquestion(){
     }
 }
 
+// This is run if the user selects the correct answer. It will fire quizOver if it is the last question, or progress to the next question if not and re-fire showQuestion
 function correctAnswer() {
     for (let i=0; i<answersUL.children.length; i++){
         answersUL.children[i].setAttribute("style", "background-color: rgb(15,15,53);")
@@ -112,11 +114,13 @@ function correctAnswer() {
     showquestion()}
 }
 
+// This runs when the user selects the correct answer
 function scoreIncrease(){
     score = score+50
     scoreBoard.innerHTML = score
 }
 
+// This is run if the user selects the correct answer. It will fire quizOver if it is the last question, or progress to the next question if not and re-fire showQuestion. It also deducts time off the timer.
 function wrongAnswer() {
     for (let i=0; i<answersUL.children.length; i++){
         answersUL.children[i].setAttribute("style", "background-color: rgb(15,15,53);")
@@ -129,6 +133,7 @@ function wrongAnswer() {
     showquestion()}    
 }
 
+// This runs when the user selects the wrong answer. It does not allow the score to go below 0.
 function scoreDecrease(){
     if(score <= 0){
         score -0
@@ -138,6 +143,7 @@ function scoreDecrease(){
     scoreBoard.innerHTML = score
 }
 
+// This is the timer function. It also has CSS styling if the timer falls below 15 seconds
 function startTimer(){
     let timer = setInterval(() => {
         secondsLeft--
@@ -183,7 +189,7 @@ function quizOver () {
         scoreMessage.textContent = bad;
     } else if (finalScore >= 250 && finalScore < 400){
         scoreMessage.textContent = okay
-    } else if(finalScore >= 400 < finalScore < 500){
+    } else if(finalScore >= 400 < finalScore <= 500){
         scoreMessage.textContent = great
     } else {
         scoreMessage.textContent = fantastic
@@ -208,7 +214,7 @@ function quizOver () {
     miniContainer.appendChild(submitHighscore)
     submitHighscore.textContent = "Submit Score"
     
-    
+    // This is where the submission of user initials is saved to local storage so that the High Scores page can access scores. This event will also send the user to the High Scores page.
     submitHighscore.addEventListener("click", function(event){
         event.preventDefault();
 
@@ -229,7 +235,7 @@ function quizOver () {
 }
 
 
-// My global event listeners
+// Global event listeners
 startButton.addEventListener("click", startQuiz)
 
 for(let i = 0; i<answersUL.children.length; i++){

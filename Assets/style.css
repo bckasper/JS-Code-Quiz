@@ -153,6 +153,8 @@ header{
         cursor: pointer;
     }
 
+
+/* some additional styling for the High Scores page */
     #highscores{
         display: flex;
         flex-direction: column;

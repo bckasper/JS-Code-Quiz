@@ -37,10 +37,14 @@ Below are the links to the live application (.io URL) and the link to the Github
 
 
 ## Screenshots
+# Screenshot of when the application is first opened
 ![Screenshot of when the application is first opened](Assets/Screenshots/Main_page.png)
 
+# Screenshot of the quiz in process
 ![Screenshot of the quiz in process](Assets/Screenshots/Quiz_Screenshot.png)
 
+# Screenshot of the final score page after the quiz is complete
 ![Screenshot of the final score page after the quiz is complete](Assets/Screenshots/Final_Score_page.png)
 
+# Screenshot of the scores page after the user submits their score/intials
 ![Screenshot of the scores page after the user submits their score/intials](Assets/Screenshots/High_Scores_Page.png)

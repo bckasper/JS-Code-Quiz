@@ -152,3 +152,13 @@ header{
     #container button:hover{
         cursor: pointer;
     }
+
+    #highscores{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #highscores li{
+        margin: auto auto 1rem auto;
+    }

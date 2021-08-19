@@ -80,7 +80,7 @@ header{
 }
 
     /* title of the quiz and weclome text. This will disappear on start */
-    #container h1{
+    h1{
         font-size: 300%;
         margin: 5rem auto 5rem auto;
     }
@@ -141,7 +141,7 @@ header{
     }
 
     /* Button to start */
-    #container button{
+    button{
         padding: 0.5rem;
         border-radius: 8px;
         color: white;
@@ -149,7 +149,7 @@ header{
         font-size: 120%;
     }
 
-    #container button:hover{
+    button:hover{
         cursor: pointer;
     }
 
@@ -163,4 +163,20 @@ header{
 
     #highscores li{
         margin: auto auto 1rem auto;
+    }
+
+    #HScontainer {
+        background-color: rgb(181, 186, 233);
+        height: 100%;
+        min-height: 30rem;
+        width: 80%;
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin: 10px auto;
+        box-shadow: 10px 10px  rgb(52, 61, 138);
+        border-radius: 25px;
+        border: 3px solid black;
     }

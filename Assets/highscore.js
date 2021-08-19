@@ -1,8 +1,8 @@
 //element variables
 var clearHighScoresBtn = document.getElementById("clearHighScore")
 var scoreOL = document.getElementById("highscores")
-var highScoreHeader = document.getElementById("header")
-var highScoreContainer = document.getElementById("container")
+var highScoreHeader = document.getElementById("HSheader")
+var highScoreContainer = document.getElementById("HScontainer")
 
 // Some page styling since these elements are both sharing the same CSS file as the index.HTML file.
 highScoreHeader.setAttribute("style","margin:3rem auto 2rem auto;")
